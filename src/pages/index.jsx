@@ -1,4 +1,6 @@
 import React from "react";
+require('dotenv').config();
+
 
 export default function Index() {
   const styles = {
@@ -40,7 +42,7 @@ export default function Index() {
     },
     contentContainer: {
       width: "80vw",
-      maxWidth: "30rem",
+      maxWidth: "28rem",
       height: "auto",
       maxHeight: "15rem",
       backgroundColor: "rgba(67, 64, 61, 0.7)",
@@ -81,27 +83,46 @@ export default function Index() {
       display: "flex",
       // border: "1px solid red",
       position: "absolute",
-      bottom: "8vh",
+      bottom: "9vh",
       left: "50%",
       transform: "translateX(-50%)",
     },
     barItem: {
-      paddingLeft: "0.75rem",
-      paddingRight: "0.75rem",
+      paddingLeft: "1vw",
+      paddingRight: "1vw",
       paddingTop: "1.5rem",
-      paddingBottom: "1rem",
-      marginLeft: "0.5rem",
+      paddingBottom: "0.5rem",
+      marginLeft: "8vw",
       borderRadius: "0.375rem 0.375rem 0 0",
       borderBottom: "1px solid #b1b1b1",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      "@media (maxWidth: 768px)": {
+        paddingLeft: "0.5rem",
+        paddingRight: "0.5rem",
+        paddingTop: "1rem",
+        paddingBottom: "0.75rem",
+      },
+      "@media (maxWidth: 480px)": {
+        paddingLeft: "0.25rem",
+        paddingRight: "0.25rem",
+        paddingTop: "0.5rem",
+        paddingBottom: "0.5rem",
+        marginLeft: "0.25rem",
+      },
     },
     barText: {
       color: "#767676",
-      fontSize: "2.5vw",
+      fontSize: "1vw",
       fontWeight: "400",
       fontFamily: "Inter, sans-serif",
+      "@media (maxWidth: 768px)": {
+        fontSize: "4vw",
+      },
+      "@media (maxWidth: 480px)": {
+        fontSize: "5vw",
+      },
     },
   };
 
