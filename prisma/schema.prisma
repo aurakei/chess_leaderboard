@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String
+}
+
+model Players{
+  id        Int      @id @default(autoincrement())
+  name      String
+  rating    String
+  avatarUrl String
+}
+
+model Leaderboard {
+  id            Int      @id @default(autoincrement())
+  playerid      Int     @unique // Assuming playerid is unique
+  ranking       Int
+  points        Int
+  matchesPlayed Int
+  wins          Int
+  losses        Int
+  draws         Int
+  updatedAt     DateTime @updatedAt
+
+  // Define relations
+  whiteMatches  Matches[] @relation("WhitePlayer")
+  blackMatches  Matches[] @relation("BlackPlayer")
+}
+
+model Matches {
+  id             Int      @id @default(autoincrement())
+  whitePlayerId  Int
+  blackPlayerId  Int
+  date           DateTime
+  result         Result
+  finalBoardState String
+  
+  // Define relations
+  whitePlayer    Leaderboard @relation("WhitePlayer", fields: [whitePlayerId], references: [id])
+  blackPlayer    Leaderboard @relation("BlackPlayer", fields: [blackPlayerId], references: [id])
+
+  @@index([whitePlayerId, blackPlayerId])
+}
+
+// Enum for match result
+enum Result {
+  WHITE_WIN
+  BLACK_WIN
+  DRAW
+}
+
+
