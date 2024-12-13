@@ -21,7 +21,7 @@ model User {
   role      String
 }
 
-model Players{
+model Player{
   id        Int      @id @default(autoincrement())
   name      String
   rating    String

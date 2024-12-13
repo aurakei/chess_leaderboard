@@ -49,6 +49,17 @@ CREATE TABLE "Matches" (
     CONSTRAINT "Matches_pkey" PRIMARY KEY ("id")
 );
 
+CREATE TABLE "club_info" (
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(255) NOT NULL,
+    "description" TEXT,
+    "location" VARCHAR(255),
+    "founded_date" DATE,
+    "contact_email" VARCHAR(255),
+    "club_logo_url" TEXT,
+    "social_links" JSONB
+)
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
